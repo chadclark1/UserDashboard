@@ -1,4 +1,7 @@
-<?php ?>
+<?php 
+	var_dump($this->session->flashdata('success'));
+	// var_dump($user_data);
+?>
 
 
 <!DOCTYPE html>
@@ -21,7 +24,7 @@
 			      </h1>
 			      <a href="#">Dashboard</a>
 			      <a href="#">Profile</a>
-			      <a href="#" class="btn btn-primary">Sign Out</a>
+			      <a href="/users/logout" class="btn btn-primary">Sign Out</a>
 			    </div>
 			  </div>
 			</nav>
@@ -31,34 +34,50 @@
 			<div class="col-md-6">
 				<div class="edit-form">
 					<h5>Edit Information</h5>
-					<form action="" method="post">
+					<form action="/users/update_info" method="post">
 						<fieldset class="form-group">
 						    <label for="first_name">First Name:</label>
-						    <input type="text" class="form-control" name="first_name" id="first_name">
+						    <input type="text" class="form-control" name="first_name" id="first_name" value="<?php echo $user_data['first_name']?>" >
 						</fieldset>
 						<fieldset class="form-group">
 						    <label for="last_name">Last Name:</label>
-						    <input type="text" class="form-control" name="last_name" id="last_name">
+						    <input type="text" class="form-control" name="last_name" id="last_name"value="<?php echo $user_data['last_name']?>">
 						</fieldset>
 						<fieldset class="form-group">
 						    <label for="email">Email:</label>
-						    <input type="text" class="form-control" name="email" id="email">
+						    <input type="text" class="form-control" name="email" id="email" value="<?php echo $user_data['email']?>">
 						</fieldset>
 						<button type="submit" class="btn btn-success">Save</button>
 					</form>
 				</div>
 			</div>
 			<div class="col-md-6">
+<?php
+$error = $this->session->flashdata('login_error');
+if($error){
+?>
+				<h5><?php echo $error ?></h5>
+<?php
+}
+?>
+<?php
+$success = $this->session->flashdata('success');
+if($success){
+?>
+				<h5><?php echo $success ?></h5>
+<?php
+}
+?>
 				<div class="edit-form">
-					<h5>Edit Information</h5>
-					<form action="" method="post">
+					<h5>Edit Password</h5>
+					<form action="/users/update_password" method="post">
 						<fieldset class="form-group">
 						    <label for="password">Password:</label>
 						    <input type="password" class="form-control" name="password" id="password">
 						</fieldset>
 						<fieldset class="form-group">
 						    <label for="confirm">Confirm Password:</label>
-						    <input type="confirm" class="form-control" name="confirm" id="confirm">
+						    <input type="password" class="form-control" name="confirm" id="confirm">
 						</fieldset>
 						<button type="submit" class="btn btn-success">Update password</button>
 					</form>
@@ -68,10 +87,11 @@
 			<div class="col-md-12">
 				<div>
 					<h5>Edit Description</h5>
-					<form action="" method="post">
+					<form action="/users/update_description" method="post">
 						<fieldset class="form-group">
-						    <textarea name="message" class="form-control" rows="5"></textarea>
+						    <textarea name="description" class="form-control" rows="5"><?php echo $user_data['description']?></textarea>
 						</fieldset>
+						<button type="submit" class="btn btn-success">Update Description</button>
 					</form>
 				</div>
 				

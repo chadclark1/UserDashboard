@@ -1,4 +1,15 @@
-<?php ?>
+<?php 
+	$session = $this->session->userdata('is_logged_in');
+	if ($session == FALSE) {
+		redirect("/users/signin");
+	}
+
+	$user_level = $this->session->userdata('user_level');
+	if ($user_level != "admin") {
+		redirect("/users/signin");
+	}
+
+?>
 
 
 <!DOCTYPE html>
@@ -19,20 +30,28 @@
 			      <h1 class="navbar-brand">
 			       	User Dashboard
 			      </h1>
-			      <a href="#">Dashboard</a>
+			      <a href="/users/dashboard">Dashboard</a>
 			      <a href="#">Profile</a>
-			      <a href="#" class="btn btn-primary">Sign Out</a>
+			      <a href="/users/logout" class="btn btn-primary">Sign Out</a>
 			    </div>
 			  </div>
 			</nav>
 		</header>
 		<div class="container">
+<?php
+$error = $this->session->flashdata('login_error');
+if($error){
+?>
+				<h5><?php echo $error ?></h5>
+<?php
+}
+?>
 			<h2>Add a new User</h2>
 			<div class="text-right">
-				<a href="#" class="btn btn-primary">Return to Dashboard</a>
+				<a href="/users/dashboard" class="btn btn-primary">Return to Dashboard</a>
 			</div>
 			<div class="col-md-5">
-				<form action="" method="post" >
+				<form action="users/create_new_user" method="post" >
 					<fieldset>
 						<label for="first_name"> First name:</label>
 						<input type="text" name="first_name" class="form-control"></input>

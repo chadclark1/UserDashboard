@@ -21,7 +21,7 @@
 			      </h1>
 			      <a href="#">Dashboard</a>
 			      <a href="#">Profile</a>
-			      <a href="#" class="btn btn-primary">Sign Out</a>
+			      <a href="/users/logout" class="btn btn-primary">Sign Out</a>
 			    </div>
 			  </div>
 			</nav>

@@ -26,9 +26,17 @@
 			</nav>
 		</header>
 		<div class="container">
+<?php
+$error = $this->session->flashdata('login_error');
+if($error){
+?>
+				<h5><?php echo $error ?></h5>
+<?php
+}
+?>
 			<h2>Sign In</h2>
 			<div class="col-md-5">
-				<form action="" method="post" >
+				<form action="/users/authenticate" method="post" >
 					<fieldset>
 						<label for="email"> Email Address:</label>
 						<input type="text" name="email" class="form-control"></input>

@@ -1,4 +1,4 @@
-<?php ?>
+<?php var_dump($this->session->flashdata('login_error')); ?>
 
 
 <!DOCTYPE html>
@@ -26,6 +26,16 @@
 			</nav>
 		</header>
 		<div class="container">
+			<div>
+<?php
+$error = $this->session->flashdata('login_error');
+if($error){
+?>
+				<h5><?php echo $error ?></h5>
+<?php
+}
+?>
+			</div>
 			<h2>Register</h2>
 			<div class="col-md-5">
 				<form action="/users/register" method="post" >

@@ -1,4 +1,10 @@
-<?php ?>
+<?php 
+	$session = $this->session->userdata('is_logged_in');
+	if ($session == FALSE) {
+		redirect("/users/signin");
+	}
+?>
+
 
 
 <!DOCTYPE html>
@@ -19,9 +25,9 @@
 			      <h1 class="navbar-brand">
 			       	User Dashboard
 			      </h1>
-			      <a href="#">Dashboard</a>
+			      <a href="/users/dashboard">Dashboard</a>
 			      <a href="#">Profile</a>
-			      <a href="#" class="btn btn-primary">Sign Out</a>
+			      <a href="/users/logout" class="btn btn-primary">Sign Out</a>
 			    </div>
 			  </div>
 			</nav>
