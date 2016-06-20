@@ -16,12 +16,16 @@
 			<nav class="navbar navbar-default">
 			  <div class="container-fluid">
 			    <div class="navbar-header">
-			      <h1 class="navbar-brand">
-			       	User Dashboard
-			      </h1>
-			      <a href="/users/signin" class="btn btn-primary">Sign In</a>
-			      <a href="/users/registration" class="btn btn-success">Register</a>
+			      <a href="/">
+				      <h1 class="navbar-brand">
+				       	User Dashboard
+				      </h1>
+			      </a>
 			    </div>
+			    <div class="text-right">
+				      <a href="/users/signin" class="btn btn-primary">Sign In</a>
+				      <a href="/users/registration" class="btn btn-success">Register</a>
+			      </div>
 			  </div>
 			</nav>
 		</header>
@@ -31,7 +35,7 @@
 			  	<div class="jumbotron">
 				  	<h1>Welcome to the test</h1>
 				  	<p>We're going to build an application using the MVC framework.</p>
-				  <a href="/users/registration" class="btn btn-primary">Start</a>
+				  <a href="users/registration" class="btn btn-primary">Start</a>
 				</div>
 			</div>
 			<row>

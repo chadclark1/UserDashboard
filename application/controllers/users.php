@@ -17,6 +17,46 @@ class Users extends CI_Controller {
 		$this->load->view('signin');
 	}
 
+	public function show()
+	{
+
+		$this->load->model('User');
+
+
+		$user_info = $this->session->userdata('user_email');
+
+		// var_dump($user_info); die();
+
+		$userdata = $this->User->get_user_by_email($user_info);
+
+
+
+		$id = $this->session->userdata['user_id'];
+
+		
+
+		$this->load->library('../controllers/messages');
+
+
+		$messages = $this->messages->show_messages($id);
+
+		$this->show_comments();
+
+		$this->load->view('show', array('userdata' => $userdata, 'messages' => $messages));
+	}
+
+	public function show_comments(){
+
+		$this->load->model('User');
+
+		$this->load->library('../controllers/comments');
+
+		$comments = $this->comments->show_comments();
+
+		return $comments;
+
+	}
+
 	public function addnew()
 	{
 		$this->load->view('new');
@@ -53,7 +93,7 @@ class Users extends CI_Controller {
             redirect("/users/registration");
 		}
 
-		$user_email = $this->User->get_user_by_email($user_info);
+		$user_email = $this->User->get_user_by_email($user_info['email']);
 
 		if($user_email != NULL){
 			$this->session->set_flashdata("login_error", "There is already and account associated with this email address");
@@ -86,7 +126,7 @@ class Users extends CI_Controller {
 
 		$this->session->set_userdata($user);
 
-		$this->load->view('show');
+		$this->show();
 
 	}
 
@@ -111,7 +151,7 @@ class Users extends CI_Controller {
             redirect("/users/signin");
 		}
 
-		$user_data = $this->User->get_user_by_email($user_info);
+		$user_data = $this->User->get_user_by_email($user_info['email']);
 
         if($user_data == NULL){
 			$this->session->set_flashdata("login_error", "The email or password is incorrect");
@@ -133,7 +173,7 @@ class Users extends CI_Controller {
 
         	$this->session->set_userdata($user);
 
-        	$this->load->view('show');
+        	$this->show();
         } else {
       
 			$this->session->set_flashdata("login_error", "The email address or password is incorrect.");
@@ -173,7 +213,7 @@ class Users extends CI_Controller {
             redirect("/users/new");
 		}
 
-		$user_email = $this->User->get_user_by_email($user_info);
+		$user_email = $this->User->get_user_by_email($user_info['email']);
 
 		if($user_email != NULL){
 			$this->session->set_flashdata("login_error", "There is already and account associated with this email address");
@@ -330,8 +370,37 @@ class Users extends CI_Controller {
 		$this->load->view('edit', array('user_data' => $user_data));
 	}
 
+	public function delete($id)
+	{
+		$this->load->model('User');
+
+		$this->User->delete($id);
+
+		redirect('/users/dashboard');
+	}
 
 
+	public function set_user_info($id){
+
+		$this->load->model('User');
+
+		$user_data = $this->User->get_user_by_id($id);
+
+		$userdata = array(
+               'user_email' => $user_data['email'],
+               'user_first_name' => $user_data['first_name'],
+               'user_last_name' => $user_data['last_name'],
+               'is_logged_in' => true,
+               'user_level' => $user_data['level'],
+               'user_id' => $user_data['id']
+            );
+
+        $this->session->set_userdata($userdata);
+
+        // var_dump($userdata); die();
+
+		// $this->load->view('edit', array('user_data' => $user_data));
+	}
 
 
 }

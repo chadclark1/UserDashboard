@@ -1,0 +1,32 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Messages extends CI_Controller {
+
+	// public function show()
+	// {
+	// 	$this->load->library('../controllers/users/show');
+	// }
+
+	public function show_comments($id){
+
+		$this->load->model('Comment');
+
+		$comments = $this->Comment->get_all_comments_by_id($id);
+
+		$this->load->view('show', array('comments' => $comments));
+
+	}
+
+	public function add_comment($id,)
+	{
+		$this->load->model('Comment');
+
+		$comment = $this->input->post('message');
+
+		$this->Comment->add_comment($id);
+
+		$this->show_comments();
+
+	}
+
+}

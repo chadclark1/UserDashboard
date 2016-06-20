@@ -19,7 +19,7 @@
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-		<link rel="stylesheet" type="text/css" href="assets/style.css">
+		<link rel="stylesheet" type="text/css" href="../assets/style.css">
 
 	</head>
 		<body>
@@ -27,12 +27,16 @@
 			<nav class="navbar navbar-default">
 			  <div class="container-fluid">
 			    <div class="navbar-header">
-			      <h1 class="navbar-brand">
-			       	User Dashboard
-			      </h1>
-			      <a href="/users/dashboard">Dashboard</a>
-			      <a href="#">Profile</a>
-			      <a href="/users/logout" class="btn btn-primary">Sign Out</a>
+			      <a href="/">
+				      <h1 class="navbar-brand">
+				       	User Dashboard
+				      </h1>
+			      </a>
+			    </div>
+			    <div class="text-right">
+				    <a href="/users/dashboard">Dashboard</a>
+			      	<a href="/users/edit">Profile</a>
+			      	<a href="/users/logout" class="btn btn-primary">Sign Out</a>
 			    </div>
 			  </div>
 			</nav>

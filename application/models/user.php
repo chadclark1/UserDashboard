@@ -17,7 +17,7 @@ class User extends CI_Model {
 
 	function get_user_by_email($user_info){
 		
-		return $this->db->query( "SELECT * FROM users WHERE email = ?", array($user_info['email'])) ->row_array();
+		return $this->db->query( "SELECT * FROM users WHERE email = ?", array($user_info)) ->row_array();
 
 	}
 
@@ -49,6 +49,10 @@ class User extends CI_Model {
 	function update_description($description, $id){
 
 		return $this->db->query("UPDATE users SET description=?,updated_at=? WHERE id=?", array($description, date("Y-m-d H:i:s"), $id));
+	}
+
+	function delete($id){
+		return $this->db->query("DELETE FROM users WHERE id = $id");
 	}
 
 

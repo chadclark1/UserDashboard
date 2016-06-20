@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-		<link rel="stylesheet" type="text/css" href="assets/style.css">
+		<link rel="stylesheet" type="text/css" href="../assets/style.css">
 
 	</head>
 		<body>
@@ -16,12 +16,16 @@
 			<nav class="navbar navbar-default">
 			  <div class="container-fluid">
 			    <div class="navbar-header">
-			      <h1 class="navbar-brand">
-			       	User Dashboard
-			      </h1>
-			      <a href="/users/signin" class="btn btn-primary">Sign In</a>
-			      <a href="/users/registration" class="btn btn-success">Register</a>
+			      <a href="/">
+				      <h1 class="navbar-brand">
+				       	User Dashboard
+				      </h1>
+			      </a>
 			    </div>
+			    <div class="text-right navigation">
+				      <a href="/users/signin" class="btn btn-primary">Sign In</a>
+				      <a href="/users/registration" class="btn btn-success">Register</a>
+			      </div>
 			  </div>
 			</nav>
 		</header>
