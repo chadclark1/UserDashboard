@@ -1,4 +1,5 @@
-<?php var_dump($this->session->all_userdata()); 
+<?php 
+// var_dump($this->session->all_userdata()); 
 	$user_level = $this->session->userdata('user_level');
 
 	$session = $this->session->userdata('is_logged_in');
@@ -29,7 +30,7 @@
 			    </div>
 			    <div class="text-right">
 				    <a href="/users/dashboard">Dashboard</a>
-			      	<a href="/users/edit">Profile</a>
+			      	<a href="/users/edit/<?php echo $this->session->userdata('user_id') ?>">Profile</a>
 			      	<a href="/users/logout" class="btn btn-primary">Sign Out</a>
 			    </div>
 			  </div>
@@ -75,14 +76,14 @@
 
 					<tr>
 						<td><?php echo $user['id']; ?></td>
-						<td><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></td>
+						<td><a href="/users/show/<?php echo $user['id'] ?>"><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></a></td>
 						<td><?php echo $user['email']; ?></td>
 						<td><?php echo $user['created_at']; ?></td>
 						<td><?php echo $user['level']; ?></td>
 <?php
 	if($user_level == "admin"){
 ?>
-						<?php echo "<td><a href='/users/edit'>edit</a> | <a href='/users/delete/" . $user['id'] . "'>remove</a></td>" ?>
+						<?php echo "<td><a href='/users/edit/" . $user['id'] . "'>edit</a> | <a href='/users/delete/" . $user['id'] . "'>remove</a></td>" ?>
 <?php
 }
 ?>

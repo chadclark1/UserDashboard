@@ -17,45 +17,19 @@ class Users extends CI_Controller {
 		$this->load->view('signin');
 	}
 
-	public function show()
+	public function show($id)
 	{
 
 		$this->load->model('User');
 
 
-		$user_info = $this->session->userdata('user_email');
+		$userdata = $this->User->get_user_by_id($id);	
 
-		// var_dump($user_info); die();
+		$this->session->set_userdata('userdata', $userdata); 
 
-		$userdata = $this->User->get_user_by_email($user_info);
-
-
-
-		$id = $this->session->userdata['user_id'];
-
-		
-
-		$this->load->library('../controllers/messages');
-
-
-		$messages = $this->messages->show_messages($id);
-
-		$this->show_comments();
-
-		$this->load->view('show', array('userdata' => $userdata, 'messages' => $messages));
+		redirect("/comments/show_comments/$id");
 	}
 
-	public function show_comments(){
-
-		$this->load->model('User');
-
-		$this->load->library('../controllers/comments');
-
-		$comments = $this->comments->show_comments();
-
-		return $comments;
-
-	}
 
 	public function addnew()
 	{
@@ -100,15 +74,6 @@ class Users extends CI_Controller {
             redirect("/users/registration");
 		} else {
 
-			$user = array(
-               'user_email' => $user_info['email'],
-               'user_first_name' => $user_info['first_name'],
-               'user_last_name' => $user_info['last_name'],
-               'is_logged_in' => true,
-               'user_id' => $user_data['id']
-            );
-
-			
 
 			$password = $user_info['password'];
 			
@@ -119,6 +84,18 @@ class Users extends CI_Controller {
 
 			$this->User->add($user_info, $salt, $encrypted_password);
 
+			$id = $this->User->get_user_by_email($user_info['email']);
+
+			// var_dump($id); die();
+
+			$user = array(
+               'user_email' => $user_info['email'],
+               'user_first_name' => $user_info['first_name'],
+               'user_last_name' => $user_info['last_name'],
+               'is_logged_in' => true,
+               'user_id' => $id['id']
+            );
+
 		}
 		
 
@@ -126,7 +103,7 @@ class Users extends CI_Controller {
 
 		$this->session->set_userdata($user);
 
-		$this->show();
+		$this->show($id['id']);
 
 	}
 
@@ -173,7 +150,7 @@ class Users extends CI_Controller {
 
         	$this->session->set_userdata($user);
 
-        	$this->show();
+        	$this->show($user_data['id']);
         } else {
       
 			$this->session->set_flashdata("login_error", "The email address or password is incorrect.");
@@ -241,11 +218,11 @@ class Users extends CI_Controller {
 
 	}
 
-	public function edit()
+	public function edit($id)
 	{
 		$this->load->model('User');
 
-		$id = $this->session->userdata('user_id');
+		// $id = $this->session->userdata('user_id');
 
 		$user_data = $this->User->get_user_by_id($id);
 

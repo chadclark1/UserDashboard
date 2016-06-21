@@ -3,6 +3,10 @@ nav .text-right {
 	margin-right: 20px;
 }
 
+/*nav a {
+	margin-left: 10px;
+}*/
+
 .message-group {
 	/*border: 2px solid #ccc;*/
 	/*border-radius: 3px;
@@ -19,4 +23,8 @@ nav .text-right {
 
 .comment {
 	margin-bottom: 30px;
+}
+
+.submit {
+	margin-top: 20px;
 }

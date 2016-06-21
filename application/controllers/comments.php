@@ -2,14 +2,10 @@
 
 class Comments extends CI_Controller {
 
-	// public function show()
-	// {
-	// 	$this->load->library('../controllers/users/show');
-	// }
 
-	public function show_comments(){
+	public function show_comments($id){
 
-		echo "hi"; die();
+		// echo "hi comment"; die();
 
 		$this->load->model('Comment');
 
@@ -17,7 +13,15 @@ class Comments extends CI_Controller {
 
 		// var_dump($comments); die();
 
-		return $comments;
+		$this->session->set_userdata('comments', $comments);
+
+
+		redirect("/messages/show_messages/$id");
+
+		// var_dump($this->session->userdata('comments'));
+		// die();
+
+		// $this->load->view('show');
 	}
 
 	public function add_comment($user_id, $message_id){

@@ -24,7 +24,7 @@
 			    </div>
 			    <div class="text-right">
 				   <a href="/users/dashboard">Dashboard</a>
-			      	<a href="/users/edit">Profile</a>
+			      	<a href="/users/edit/<?php echo $this->session->userdata('user_id') ?>">Profile</a>
 			      	<a href="/users/logout" class="btn btn-primary">Sign Out</a>
 			    </div>
 			  </div>

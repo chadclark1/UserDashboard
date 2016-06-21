@@ -4,9 +4,23 @@
 		redirect("/users/signin");
 	}
 
-	// var_dump($this->session->all_userdata());
+	var_dump($this->session->all_userdata());
 
-	var_dump($messages);
+	// echo "<br>";
+	// echo "<br>";
+	// echo "<br>";
+
+	$userdata = $this->session->userdata('userdata');
+
+	$messages = $this->session->userdata('messages');
+
+	$comments = $this->session->userdata('comments');
+
+	// var_dump($userdata); 
+
+	
+
+	
 ?>
 
 
@@ -34,7 +48,7 @@
 			    </div>
 			    <div class="text-right">
 				   <a href="/users/dashboard">Dashboard</a>
-			      	<a href="/users/edit">Profile</a>
+			      	<a href="/users/edit/<?php echo $this->session->userdata('user_id') ?>">Profile</a>
 			      	<a href="/users/logout" class="btn btn-primary">Sign Out</a>
 			    </div>
 			  </div>
@@ -56,7 +70,7 @@
 						<textarea name="message" class="form-control" rows="5"></textarea>
 					</fieldset>
 					<div class="text-right">
-						<button type="submit" class="btn btn-success">Post</button>
+						<button type="submit" class="btn btn-success submit">Post</button>
 					</div>
 				</form>
 			</div>
@@ -64,16 +78,31 @@
 <?php
 	
 foreach ($messages as $message) {
-var_dump($message);
+// var_dump($message);
+$id = $message['id'];
+
 ?>
 
 
 				<div class="message-group">
 					<br>
-					<h5 class="col-md-12">Name:</h5>
+					<h5 class="col-md-12">Name: <!-- <?php echo $message['first_name'] . ' ' . $message['last_name'] ?> --></h5>
 					<div class="col-md-12 text-right message">
 						<?php echo $message['message']; ?>
 					</div>
+<?php
+		foreach ($comments as $comment) {
+			if($comment['messages_id'] === $id){
+
+?>
+						<div class="col-md-11 col-md-offset-1 text-right message">
+							<?php echo $comment['comment']; ?>
+						</div>
+<?php
+			}
+
+		}
+ ?>
 
 					<div class = "col-md-11 col-md-offset-1 comment">
 						<form action="/comments/add_comment/<?php echo $userdata['id']?>/<?php echo $message['id']?>" method="post">
@@ -81,14 +110,12 @@ var_dump($message);
 								<textarea name="comment" class="form-control" rows="5" placeholder="Leave a comment"></textarea>
 							</fieldset>
 							<div class="text-right">
-								<button type="submit" class="btn btn-success">Post</button>
+								<button type="submit" class="btn btn-success submit">Post</button>
 							</div>
 						</form>
 					</div>
 					<br>
-<?php
-	// foreach function to get comments
- ?>
+
 				</div>
 <?php
 	}

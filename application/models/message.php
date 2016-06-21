@@ -23,4 +23,13 @@ class Message extends CI_Model {
 	}
 
 
+	// function get_all_comments_by_message_id($id){
+	// 	return $this->db->query("SELECT * FROM messages LEFT JOIN comments ON messages.id=comments.messages_id WHERE messages_id = $id";) -> result_array();
+	// }
+
+	function get_all_messages(){
+		return $this->db->query("SELECT * FROM messages") -> result_array();
+	}
+
+
 }

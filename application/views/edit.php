@@ -1,5 +1,5 @@
 <?php 
-	var_dump($this->session->flashdata('success'));
+	// var_dump($this->session->flashdata('success'));
 	// var_dump($user_data);
 ?>
 
@@ -27,14 +27,14 @@
 			    </div>
 			    <div class="text-right">
 				   <a href="/users/dashboard">Dashboard</a>
-			      	<a href="/users/edit">Profile</a>
+			      	<a href="/users/edit/<?php echo $this->session->userdata('user_id') ?>">Profile</a>
 			      	<a href="/users/logout" class="btn btn-primary">Sign Out</a>
 			    </div>
 			  </div>
 			</nav>
 		</header>
 		<div class="container">
-			<h2>Edit Profile/User - </h2>
+			<h2>Edit User - <?php echo $user_data['first_name'] . ' ' . $user_data['last_name']?></h2>
 			<div class="col-md-6">
 				<div class="edit-form">
 					<h5>Edit Information</h5>
@@ -51,7 +51,7 @@
 						    <label for="email">Email:</label>
 						    <input type="text" class="form-control" name="email" id="email" value="<?php echo $user_data['email']?>">
 						</fieldset>
-						<button type="submit" class="btn btn-success">Save</button>
+						<button type="submit" class="btn btn-success submit">Save</button>
 					</form>
 				</div>
 			</div>
@@ -83,7 +83,7 @@ if($success){
 						    <label for="confirm">Confirm Password:</label>
 						    <input type="password" class="form-control" name="confirm" id="confirm">
 						</fieldset>
-						<button type="submit" class="btn btn-success">Update password</button>
+						<button type="submit" class="btn btn-success submit">Update password</button>
 					</form>
 					
 				</div>
@@ -95,7 +95,7 @@ if($success){
 						<fieldset class="form-group">
 						    <textarea name="description" class="form-control" rows="5"><?php echo $user_data['description']?></textarea>
 						</fieldset>
-						<button type="submit" class="btn btn-success">Update Description</button>
+						<button type="submit" class="btn btn-success submit">Update Description</button>
 					</form>
 				</div>
 				

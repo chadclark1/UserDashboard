@@ -1,4 +1,6 @@
-<?php var_dump($this->session->flashdata('login_error')); ?>
+<?php 
+// var_dump($this->session->flashdata('login_error')); 
+?>
 
 
 <!DOCTYPE html>
@@ -63,7 +65,7 @@ if($error){
 						<label for="confirm"> Confirm Password:</label>
 						<input type="password" name="confirm" class="form-control"></input>
 					</fieldset>
-					<button type="submit" class="btn btn-success">Sign Up</button>
+					<button type="submit" class="btn btn-success submit">Sign Up</button>
 				</form>
 				<a href="/users/signin"><p>Already have an account? Sign In!</p></a>
 			</div>
