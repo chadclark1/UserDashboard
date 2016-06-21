@@ -22,7 +22,6 @@ class Users extends CI_Controller {
 
 		$this->load->model('User');
 
-
 		$userdata = $this->User->get_user_by_id($id);	
 
 		$this->session->set_userdata('userdata', $userdata); 

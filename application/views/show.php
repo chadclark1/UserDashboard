@@ -4,7 +4,7 @@
 		redirect("/users/signin");
 	}
 
-	var_dump($this->session->all_userdata());
+	// var_dump($this->session->all_userdata());
 
 	// echo "<br>";
 	// echo "<br>";
@@ -15,6 +15,8 @@
 	$messages = $this->session->userdata('messages');
 
 	$comments = $this->session->userdata('comments');
+
+
 
 	// var_dump($userdata); 
 
@@ -105,7 +107,7 @@ $id = $message['id'];
  ?>
 
 					<div class = "col-md-11 col-md-offset-1 comment">
-						<form action="/comments/add_comment/<?php echo $userdata['id']?>/<?php echo $message['id']?>" method="post">
+						<form action="/comments/add_comment/<?php echo $this->session->userdata('user_id')?>/<?php echo $message['id']?>/<?php echo $userdata['id']?>" method="post">
 							<fieldset>
 								<textarea name="comment" class="form-control" rows="5" placeholder="Leave a comment"></textarea>
 							</fieldset>

@@ -24,7 +24,7 @@ class Comments extends CI_Controller {
 		// $this->load->view('show');
 	}
 
-	public function add_comment($user_id, $message_id){
+	public function add_comment($user_id, $message_id, $id){
 
 		$this->load->model('Comment');
 
@@ -33,6 +33,8 @@ class Comments extends CI_Controller {
 
 
 		$this->Comment->add($comment, $user_id, $message_id);
+
+		redirect("/users/show/$id");
 
 	
 	}
